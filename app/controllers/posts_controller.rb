@@ -12,14 +12,14 @@ class PostsController < ApplicationController
 	end
 
 	def create
-	  @post = Post.new(params)
-	  @post.save
+	  @post = Post.create(params[:post])
 	  redirect_to post_path(@post)
 	end
 
 	def update
 	  @post = Post.find(params[:id])
-	  @post.update(params.require(:post))
+	  @post.update(params[:post])
+	  @post.reload
 	  redirect_to post_path(@post)
 	end
 
